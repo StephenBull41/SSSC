@@ -1,0 +1,156 @@
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Thread TSearch = new Thread(TSearchThread);
+            TSearch.Start();
+        }
+
+        private void TSearchThread()
+        {
+            // need some way to determine duplicates
+            string Term = tbxTerm.Text;
+            string SMark = ">>>>>>>>>>>>> Tax invoice <<<<<<<<<<<<<";
+            string EMark = "Date Time  Num POS CNo PSNo";
+            string POSnum = "";
+            string Site = Variables.SiteID;
+            string ResultPath = "";
+            int TStart = 0;
+            int TEnd = 0;
+            int LineCounter = 0;
+            int SubLineCounter = 0;
+            int ResultCounter = 0;
+            int Length = 0;
+            bool Found = false;
+
+            // create random string 
+
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var stringChars = new char[8];
+            var random = new Random();
+            for (int a = 0; a < stringChars.Length; a++)
+            {
+                stringChars[a] = chars[random.Next(chars.Length)];
+            }
+            var RandS = new String(stringChars);
+            Variables.CurrRand = RandS;
+
+            // prepare result file
+
+            ResultPath = $@"C:\SSSC\TSearch\{Site}-{RandS}-R.txt";
+            File.Create(ResultPath).Close();
+
+            // write batch to grab file from POS
+            File.Create($@"C:\SSSC\TSearch\{Site}-{RandS}.txt").Close();
+            Thread.Sleep(1500);
+            string line1 = "line1";
+            string line2 = "line2";
+            string line3 = ">>>>>>>>>>>>> Tax invoice <<<<<<<<<<<<<";
+            string line4 = "$4.20";
+            string line5 = "1x meme";
+            string line6 = "Date Time  Num POS CNo PSNo";
+            string line7 = "12/01 12:01 12345 2 1212 123";
+            string line8 = "ayy";
+            string line9 = "lao";
+            string[] AllLines = { line1, line2, line3, line4, line5, line6, line7, line8, line9 };
+            File.WriteAllLines(($@"C:\SSSC\TSearch\{Site}-{RandS}.txt"), AllLines);
+            // do search
+
+            if (true) // change to if searching contents or T/D, TNum etc.
+            {
+                string[] Alltext = File.ReadAllLines($@"C:\SSSC\TSearch\{Site}-{RandS}.txt");
+                foreach (string Line in Alltext)
+                {
+                    if (Line == SMark)
+                    {
+                        TStart = LineCounter;
+                    }
+                    if (Line.Contains(Term))
+                    {
+                        Found = true;
+                    }
+                    if (Found == true && Line == EMark)
+                    {
+                        Found = false;
+                        TEnd = LineCounter + 1;
+                        Length = TEnd - TStart;
+                        ResultCounter++;
+                        string NewLine = Environment.NewLine + "~~NewMatch," + Length;
+                        string Existing = "";
+                        if (File.Exists(ResultPath))
+                        {
+                            Existing = File.ReadAllText(ResultPath);
+                        }
+                        File.WriteAllText(ResultPath, Existing + NewLine);
+
+                        // Read between start & end and write all lines to file
+
+                        string[] SubText = File.ReadAllLines($@"C:\SSSC\TSearch\{Site}-{RandS}.txt");
+                        foreach (string subline in SubText)
+                        {
+                            if (SubLineCounter >= TStart && SubLineCounter <= TEnd)
+                            {
+                                NewLine = Environment.NewLine + subline;
+                                if (File.Exists(ResultPath))
+                                {
+                                    Existing = File.ReadAllText(ResultPath);
+                                }
+                                File.WriteAllText(ResultPath, Existing + NewLine);
+                            }
+                            SubLineCounter++;
+                        }
+                    }
+                    LineCounter++;
+                }
+
+                string ResultInfo = ResultCounter + Environment.NewLine;
+                string ResultText = "";
+                if (File.Exists(ResultPath))
+                {
+                    ResultText = File.ReadAllText(ResultPath);
+                }
+                File.WriteAllText(ResultPath, ResultInfo + ResultText);
+            }
+        }
+
+        private void btnPrevRes_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnNextRes_Click(object sender, EventArgs e)
+        {
+            int CurrRes = 0;
+            int TotRes = 0;
+            int ML = 0;
+            string Site = Variables.SiteID;
+            bool L1 = true;
+            bool Write = false;
+            string[] Alltext = File.ReadAllLines($@"C:\SSSC\TSearch\{Site}-{Variables.CurrRand}-R.txt");
+            foreach (string Line in Alltext)
+            {
+                if (L1)
+                {
+                    L1 = false;
+                    TotRes = Convert.ToInt32(Line);
+                    lblResNum.Text = TotRes.ToString();
+                }
+                if (Write && ML >= 0)
+                {
+                    rtbSearchRes.Text = rtbSearchRes.Text + Environment.NewLine + Line;
+                    ML--;
+                }
+                try
+                {
+                    string ThisLine = Line.Remove(Line.IndexOf(','));
+                    lblResNum.Text = ThisLine;
+                    if (ThisLine == "~~NewMatch")
+                    {
+                        ML = Convert.ToInt32(Line.Remove(0, Line.IndexOf(',') + 1));
+                        Write = true;
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
