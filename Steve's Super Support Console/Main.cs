@@ -56,7 +56,7 @@ namespace Steve_s_Super_Support_Console
             string[] Peeps = File.ReadAllLines(getConfigValue("whitelist"));
             foreach (string Dude in Peeps) //check if user is whitelisted
             {
-                if (Username == Dude)
+                if (Username.ToUpper() == Dude.ToUpper())
                 {
                     whitelisted = true;
                     //btnOPTAddEntry.Visible = true;    buttons are bugged and I don't intend on fixing them
@@ -77,6 +77,18 @@ namespace Steve_s_Super_Support_Console
                     Environment.Exit(5);
                 }
             }
+
+            //check if user is blacklisted, if a user is blaclisted they're in training & locked out of scripts
+            // and context menus
+            Peeps = File.ReadAllLines(getConfigValue("blacklist"));
+            foreach(string dude in Peeps)
+            {
+                if(Username.ToUpper() == dude.ToUpper())
+                {
+                    fnc_blacklisted = true;
+                }
+            }
+
             onLoadFormat();
             CustomButtonInit();
 
@@ -1413,328 +1425,448 @@ namespace Steve_s_Super_Support_Console
         //P1
         private void P1CPing_Click(object sender, EventArgs e)
         {
-            Devcie = "MWS";
-            CPingIP = NetIP + ".49";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
-            dont_use_the_acronym++;
+            if (!fnc_blacklisted)
+            {
+                Devcie = "MWS";
+                CPingIP = NetIP + ".49";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+                dont_use_the_acronym++;
+            }
         }
         private void P1CopyIP_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(MWSIP);
-            no_context++;
+            if (!fnc_blacklisted)
+            {
+                Clipboard.SetText(MWSIP);
+                no_context++;
+            }
         }
         private void cToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start($@"\\{MWSIP}\c$");
-            Log("Event", "Opened Pos 1 C:");
-            no_context++;
+            if (!fnc_blacklisted)
+            {
+                Process.Start($@"\\{MWSIP}\c$");
+                Log("Event", "Opened Pos 1 C:");
+                no_context++;
+            }
         }
         private void eJournalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start($@"\\{MWSIP}\c$\sni\namos\cmos\Ejournal.txt");
-            Log("Event", "Opened P1 EJ");
-            no_context++;
+            if (!fnc_blacklisted)
+            {
+                Process.Start($@"\\{MWSIP}\c$\sni\namos\cmos\Ejournal.txt");
+                Log("Event", "Opened P1 EJ");
+                no_context++;
+            }
         }
         //P2
         private void P2CPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "CWS1";
-            CPingIP = NetIP + ".41";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "CWS1";
+                CPingIP = NetIP + ".41";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void P2CIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(CWSIP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(CWSIP);
+            }
         }
         private void P2CDMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Process.Start($@"\\{CWSIP}\c$");
-            Log("Event", "Opened Pos 2 C:");
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Process.Start($@"\\{CWSIP}\c$");
+                Log("Event", "Opened Pos 2 C:");
+            }
         }
         private void P2EJMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Process.Start($@"\\{CWSIP}\c$\sni\namos\cmos\Ejournal.txt");
-            Log("Event", "Opened P2 EJ");
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Process.Start($@"\\{CWSIP}\c$\sni\namos\cmos\Ejournal.txt");
+                Log("Event", "Opened P2 EJ");
+            }
         }
         //P3
         private void P3CPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "CWS2";
-            CPingIP = NetIP + ".42";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "CWS2";
+                CPingIP = NetIP + ".42";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void P3CIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(CWS2IP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(CWS2IP);
+            }
         }
         private void P3CDMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Process.Start($@"\\{CWS2IP}\c$");
-            Log("Event", "Opened Pos 3 C:");
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Process.Start($@"\\{CWS2IP}\c$");
+                Log("Event", "Opened Pos 3 C:");
+            }
         }
         private void P3EJMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Process.Start($@"\\{CWS2IP}\c$\sni\namos\cmos\Ejournal.txt");
-            Log("Event", "Opened P3 EJ");
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Process.Start($@"\\{CWS2IP}\c$\sni\namos\cmos\Ejournal.txt");
+                Log("Event", "Opened P3 EJ");
+            }
         }
         //P4
         private void P4CPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "CWS3";
-            CPingIP = NetIP + ".43";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "CWS3";
+                CPingIP = NetIP + ".43";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void P4CIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(CWS3IP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(CWS3IP);
+            }
         }
         private void P4CDMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Process.Start($@"\\{CWS3IP}\c$");
-            Log("Event", "Opened Pos 4 C:");
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Process.Start($@"\\{CWS3IP}\c$");
+                Log("Event", "Opened Pos 4 C:");
+            }
         }
         private void P4EJMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Process.Start($@"\\{CWS3IP}\c$\sni\namos\cmos\Ejournal.txt");
-            Log("Event", "Opened P4 EJ");
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Process.Start($@"\\{CWS3IP}\c$\sni\namos\cmos\Ejournal.txt");
+                Log("Event", "Opened P4 EJ");
+            }
         }
         //PP1
         private void PP1CPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "PP1";
-            CPingIP = NetIP + ".50";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "PP1";
+                CPingIP = NetIP + ".50";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void PP1CIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(PP1IP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(PP1IP);
+            }
         }
         //PP2
         private void PP2CPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "PP2";
-            CPingIP = NetIP + ".51";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "PP2";
+                CPingIP = NetIP + ".51";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void PP2CIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(PP2IP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(PP2IP);
+            }
         }
         //PP3
         private void PP3CPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "PP3";
-            CPingIP = NetIP + ".52";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "PP3";
+                CPingIP = NetIP + ".52";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void PP3CIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(PP3IP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(PP3IP);
+            }
         }
         //PP4
         private void PP4CPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "PP4";
-            CPingIP = NetIP + ".53";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "PP4";
+                CPingIP = NetIP + ".53";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void PP4CIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(PP4IP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(PP4IP);
+            }
         }
         //BOC
         private void BOCCPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "BOC";
-            CPingIP = NetIP + ".70";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "BOC";
+                CPingIP = NetIP + ".70";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void BOCCIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(BOCIP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(BOCIP);
+            }
         }
         private void ctmBOCCD_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Process.Start($@"\\{BOCIP}\C$\");
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Process.Start($@"\\{BOCIP}\C$\");
+            }
         }
         //Postec
         private void PostecCPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "Postec";
-            CPingIP = NetIP + ".39";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "Postec";
+                CPingIP = NetIP + ".39";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void PostecCIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(POSTECIP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(POSTECIP);
+            }
         }
         //Switch
         private void SwitchCPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "Switch";
-            CPingIP = NetIP + ".253";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "Switch";
+                CPingIP = NetIP + ".253";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void SwitchCIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(SWITCHIP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(SWITCHIP);
+            }
         }
         //Router
         private void RouterCPMenu_Click(object sender, EventArgs e)
         {
-            dont_use_the_acronym++;
-            Devcie = "Router";
-            CPingIP = NetIP + ".254";
-            Thread CPingT = new Thread(CPingThread);
-            CPingT.Start();
-            Log("Event", $"Launched Constant ping for {Devcie}");
+            if (!fnc_blacklisted)
+            {
+                dont_use_the_acronym++;
+                Devcie = "Router";
+                CPingIP = NetIP + ".254";
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+                Log("Event", $"Launched Constant ping for {Devcie}");
+            }
         }
         private void RouterCIPMenu_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(ROUTERIP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(ROUTERIP);
+            }
         }
         //Dialers
         private void D0CIP_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(SiteWANIP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(SiteWANIP);
+            }
         }
         private void D1CIP_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(SiteWANIP2);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(SiteWANIP2);
+            }
         }
         private void D2CIP_Click(object sender, EventArgs e)
         {
-            no_context++;
-            Clipboard.SetText(Site3GIP);
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                Clipboard.SetText(Site3GIP);
+            }
         }
         // Misc shortcuts
         private void P1Cmos_Click(object sender, EventArgs e)
         {
-            no_context++;
-            P1Cmos.Enabled = false;
-            try
+            if (!fnc_blacklisted)
             {
-                if (SiteID != "nositeloaded")
+                no_context++;
+                P1Cmos.Enabled = false;
+                try
                 {
-                    Process.Start($@"\\{MWSIP}\c$\sni\namos\cmos");
+                    if (SiteID != "nositeloaded")
+                    {
+                        Process.Start($@"\\{MWSIP}\c$\sni\namos\cmos");
+                    }
+                    P1Cmos.Enabled = true;
                 }
-                P1Cmos.Enabled = true;
+                catch (Exception)
+                {
+                    //no connection to boc
+                    P1Cmos.Enabled = true;
+                }
+                Log("Event", "Opened P1 CMOS");
             }
-            catch (Exception)
-            {
-                //no connection to boc
-                P1Cmos.Enabled = true;
-            }
-            Log("Event", "Opened P1 CMOS");
         }
         private void P2Cmos_Click(object sender, EventArgs e)
         {
-            no_context++;
-            P2Cmos.Enabled = false;
-            try
+            if (!fnc_blacklisted)
             {
-                if (SiteID != "nositeloaded")
+                no_context++;
+                P2Cmos.Enabled = false;
+                try
                 {
-                    Process.Start($@"\\{CWSIP}\c$\sni\namos\cmos");
+                    if (SiteID != "nositeloaded")
+                    {
+                        Process.Start($@"\\{CWSIP}\c$\sni\namos\cmos");
+                    }
+                    P2Cmos.Enabled = true;
                 }
-                P2Cmos.Enabled = true;
+                catch (Exception)
+                {
+                    //no connection to boc
+                    P2Cmos.Enabled = true;
+                }
+                Log("Event", "Opened P2 CMOS");
             }
-            catch (Exception)
-            {
-                //no connection to boc
-                P2Cmos.Enabled = true;
-            }
-            Log("Event", "Opened P2 CMOS");
         }
         private void P3Cmos_Click(object sender, EventArgs e)
         {
-            no_context++;
-            P3Cmos.Enabled = false;
-            try
+            if (!fnc_blacklisted)
             {
-                if (SiteID != "nositeloaded")
+                no_context++;
+                P3Cmos.Enabled = false;
+                try
                 {
-                    Process.Start($@"\\{CWS2IP}\c$\sni\namos\cmos");
+                    if (SiteID != "nositeloaded")
+                    {
+                        Process.Start($@"\\{CWS2IP}\c$\sni\namos\cmos");
+                    }
+                    P3Cmos.Enabled = true;
                 }
-                P3Cmos.Enabled = true;
+                catch (Exception)
+                {
+                    //no connection to boc
+                    P3Cmos.Enabled = true;
+                }
+                Log("Event", "Opened P3 CMOS");
             }
-            catch (Exception)
-            {
-                //no connection to boc
-                P3Cmos.Enabled = true;
-            }
-            Log("Event", "Opened P3 CMOS");
         }
         private void P4Cmos_Click(object sender, EventArgs e)
         {
-            no_context++;
-            P4Cmos.Enabled = false;
-            try
+            if (!fnc_blacklisted)
             {
-                if (SiteID != "nositeloaded")
+                no_context++;
+                P4Cmos.Enabled = false;
+                try
                 {
-                    Process.Start($@"\\{CWS3IP}\c$\sni\namos\cmos");
+                    if (SiteID != "nositeloaded")
+                    {
+                        Process.Start($@"\\{CWS3IP}\c$\sni\namos\cmos");
+                    }
+                    P4Cmos.Enabled = true;
                 }
-                P4Cmos.Enabled = true;
+                catch (Exception)
+                {
+                    //no connection to boc
+                    P4Cmos.Enabled = true;
+                }
+                Log("Event", "Opened P4 CMOS");
             }
-            catch (Exception)
-            {
-                //no connection to boc
-                P4Cmos.Enabled = true;
-            }
-            Log("Event", "Opened P4 CMOS");
         }
 
 
@@ -1839,7 +1971,7 @@ namespace Steve_s_Super_Support_Console
             string btn_name = ((Button)sender).Name.ToString();
             int button_num = Convert.ToInt32(btn_name.Remove(0, 4));
 
-            if (File.Exists(getConfigValue("cbc_root") + $"{currentUser}_CBC.txt"))
+            if (File.Exists(getConfigValue("cbc_root") + $"{currentUser}_CBC.txt") && !fnc_blacklisted)
             {
                 string[] config = File.ReadAllLines(getConfigValue("cbc_root") + $"{currentUser}_CBC.txt");
                 string button = config[button_num];
@@ -1926,7 +2058,7 @@ namespace Steve_s_Super_Support_Console
 
                 }
             }
-            else
+            else if(!fnc_blacklisted)
             {
                 MessageBox.Show("Unable to read config file: " + getConfigValue("cbc_root") + $"{currentUser}_CBC.txt");
             }
@@ -3217,7 +3349,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.0.1.0";
+        public string version = "4.0.2.0";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
@@ -3231,10 +3363,6 @@ namespace Steve_s_Super_Support_Console
         public int EMG_resets_pushed = 0; //times device notes tab focused 
         public int no_context = 0;//times context menu shortcut / script was used
         public int dont_use_the_acronym = 0;//time constant ping launched from clicking an icon or context menu
-
-        //Images
-
-
 
         // other
         public List<Control> conlist = new List<Control>();
@@ -3257,6 +3385,7 @@ namespace Steve_s_Super_Support_Console
         public string AlertEDate = "";
         public string AlertText = "";
         public bool testmode = false;
+        public bool fnc_blacklisted = false;
         public int TimeLeft = 180;
         public string CPingIP = "127.0.0.1";
         public string debuggin = "";
