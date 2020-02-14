@@ -74,7 +74,7 @@ namespace Steve_s_Super_Support_Console
                 }
                 else
                 {
-                    //Environment.Exit(5);
+                   Environment.Exit(5);
                 }
             }
 
