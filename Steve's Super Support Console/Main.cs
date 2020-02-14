@@ -413,6 +413,11 @@ namespace Steve_s_Super_Support_Console
                 if (d.online)
                 {
                     d.indicator.BackColor = Color.FromArgb(13, 239, 66);
+                    //check if the site has an SAH server & alert the operator if it does
+                    if (d.ip.Remove(0, d.ip.Length - 3) == getConfigValue("sah1ip") && getConfigValue("enable_sah_alert") == "true")
+                    {
+                        MessageBox.Show(getConfigValue("sah_alert_message"));
+                    }
                 }
                 else
                 {
@@ -719,15 +724,24 @@ namespace Steve_s_Super_Support_Console
 
         void loadAlerts()
         {
-            lbxAlerts.Items.Clear();
-            string[] Alerts = File.ReadAllLines(getConfigValue("alerts"), Encoding.UTF8);
+            //string[] Alerts = File.ReadAllLines(getConfigValue("alerts"), Encoding.UTF8);
+            DirectoryInfo dir = new DirectoryInfo(getConfigValue("site_alerts_dir"));
+            FileInfo[] files = dir.GetFiles("*.txt");
+            foreach(FileInfo f in files)
+            {
+                if(f.Name == $"{SiteID}.txt")
+                {
+                    string[] at = File.ReadAllLines(f.FullName);
+                    TextViewer tv = new TextViewer(at, $"Site alert {SiteID}");
+                }
+            }
+            /*
             string AID;
             foreach (string Alert in Alerts)
             {
                 if (Alert != "")
                 {
                     AID = Alert.Remove(Alert.IndexOf(","));
-                    lbxAlerts.Items.Add(AID);
                     if (AID == SiteID)
                     {
                         AlertViewer f2 = new AlertViewer(SiteID);
@@ -735,6 +749,7 @@ namespace Steve_s_Super_Support_Console
                     }
                 }
             }
+            */
         }
 
         void loadSite()
@@ -1323,100 +1338,6 @@ namespace Steve_s_Super_Support_Console
             Log("Event", $"Launched Constant ping for {Devcie}");
         }
 
-        #endregion
-
-        #region Site Alerts
-
-
-        private void btnAlertsAdd_Click(object sender, EventArgs e)
-        {
-            AlertEditor f3 = new AlertEditor("new", null, null, null);
-            f3.ShowDialog();
-            Log("Event", "Added an alert");
-        }
-
-        private void btnAlertEdit_Click(object sender, EventArgs e)
-        {
-            AlertEditor f3 = new AlertEditor(EditSite, AlertSDate, AlertEDate, AlertText);
-            f3.ShowDialog();
-            Log("Event", "Edited an Alert");
-        }
-
-        private void btnAlertDelete_Click(object sender, EventArgs e)
-        {
-            Log("Event", "Deleted an alert");
-            int d = lbxAlerts.SelectedIndex;
-            string[] lines = File.ReadAllLines(getConfigValue("alerts"));
-            lines[d] = "";
-
-            File.WriteAllText(getConfigValue("alerts"), String.Empty, Encoding.UTF8);
-            bool fLine = true;
-            foreach (string line in lines)
-            {
-                if (line != "" && fLine == false)
-                {
-                    File.AppendAllText(getConfigValue("alerts"), Environment.NewLine + line, Encoding.UTF8);
-                }
-                if (line != "" && fLine == true)
-                {
-                    File.AppendAllText(getConfigValue("alerts"), line, Encoding.UTF8);
-                    fLine = false;
-                }
-            }
-
-            // reload list
-
-            lbxAlerts.Items.Clear();
-            string[] Alerts = File.ReadAllLines(getConfigValue("alerts"), Encoding.UTF8);
-            string AID;
-            foreach (string Alert in Alerts)
-            {
-                if (Alert != "")
-                {
-                    AID = Alert.Remove(Alert.IndexOf(","));
-                    lbxAlerts.Items.Add(AID);
-                }
-            }
-        }
-
-        private void btnAlertView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string[] Alerts = File.ReadAllLines(getConfigValue("alerts"), Encoding.UTF8);
-                int s = lbxAlerts.SelectedIndex;
-                string[] field;
-                field = Alerts[s].Split(',');
-                string ID = field[0];
-                string StartD = field[1];
-                string EndD = field[2];
-                string Key = field[3];
-                string Notes = "";
-                try
-                {
-                    Notes = field[4].Replace('`', ',');
-                }
-                catch (Exception)
-                {
-                    //no commas do nothing
-                }
-
-                EditSite = ID;
-                AlertSDate = StartD;
-                AlertEDate = EndD;
-                AlertText = Notes;
-                rtbAlertView.Text =
-                    "Site ID: " + ID + Environment.NewLine +
-                    "Start Date: " + StartD + Environment.NewLine +
-                    "End Date: " + EndD + Environment.NewLine +
-                    "By: " + Key + Environment.NewLine +
-                    Notes;
-            }
-            catch (Exception)
-            {
-                rtbAlertView.Text = "No alert selected";
-            }
-        }
         #endregion
 
         #region Context menu stuff

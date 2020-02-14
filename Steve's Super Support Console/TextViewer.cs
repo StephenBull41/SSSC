@@ -13,10 +13,10 @@ namespace Steve_s_Super_Support_Console
 {
     public partial class TextViewer : Form
     {
-        public TextViewer(string text, string name)
+        public TextViewer(string[] text, string name)
         {
             InitializeComponent();
-            rtbTextViewer.Text = text;
+            rtbTextViewer.Lines = text;
             this.Text = name;
         }
 

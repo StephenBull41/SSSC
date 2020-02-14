@@ -187,14 +187,6 @@
             this.ctxsubEdit15 = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_CBManage = new System.Windows.Forms.Button();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label20 = new System.Windows.Forms.Label();
-            this.btnAlertsAdd = new System.Windows.Forms.Button();
-            this.rtbAlertView = new System.Windows.Forms.RichTextBox();
-            this.btnAlertDelete = new System.Windows.Forms.Button();
-            this.btnAlertEdit = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.lbxAlerts = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label50 = new System.Windows.Forms.Label();
             this.tbxOther = new System.Windows.Forms.RichTextBox();
@@ -353,7 +345,6 @@
             this.ctmcust16.SuspendLayout();
             this.ctmcust15.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_DOMS58)).BeginInit();
@@ -1617,95 +1608,6 @@
             this.btn_CBManage.UseVisualStyleBackColor = false;
             this.btn_CBManage.Click += new System.EventHandler(this.btn_CBManage_Click);
             // 
-            // tabPage5
-            // 
-            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage5.Controls.Add(this.label20);
-            this.tabPage5.Controls.Add(this.btnAlertsAdd);
-            this.tabPage5.Controls.Add(this.rtbAlertView);
-            this.tabPage5.Controls.Add(this.btnAlertDelete);
-            this.tabPage5.Controls.Add(this.btnAlertEdit);
-            this.tabPage5.Controls.Add(this.label18);
-            this.tabPage5.Controls.Add(this.lbxAlerts);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage5.Size = new System.Drawing.Size(665, 552);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Notifications";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(349, 242);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(95, 20);
-            this.label20.TabIndex = 106;
-            this.label20.Text = "View Alert:";
-            // 
-            // btnAlertsAdd
-            // 
-            this.btnAlertsAdd.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAlertsAdd.Location = new System.Drawing.Point(349, 178);
-            this.btnAlertsAdd.Name = "btnAlertsAdd";
-            this.btnAlertsAdd.Size = new System.Drawing.Size(303, 61);
-            this.btnAlertsAdd.TabIndex = 105;
-            this.btnAlertsAdd.Text = "Add";
-            this.btnAlertsAdd.UseVisualStyleBackColor = false;
-            this.btnAlertsAdd.Click += new System.EventHandler(this.btnAlertsAdd_Click);
-            // 
-            // rtbAlertView
-            // 
-            this.rtbAlertView.Location = new System.Drawing.Point(349, 265);
-            this.rtbAlertView.Name = "rtbAlertView";
-            this.rtbAlertView.Size = new System.Drawing.Size(303, 277);
-            this.rtbAlertView.TabIndex = 104;
-            this.rtbAlertView.Text = "";
-            // 
-            // btnAlertDelete
-            // 
-            this.btnAlertDelete.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAlertDelete.Location = new System.Drawing.Point(349, 111);
-            this.btnAlertDelete.Name = "btnAlertDelete";
-            this.btnAlertDelete.Size = new System.Drawing.Size(303, 61);
-            this.btnAlertDelete.TabIndex = 103;
-            this.btnAlertDelete.Text = "Delete";
-            this.btnAlertDelete.UseVisualStyleBackColor = false;
-            this.btnAlertDelete.Click += new System.EventHandler(this.btnAlertDelete_Click);
-            // 
-            // btnAlertEdit
-            // 
-            this.btnAlertEdit.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAlertEdit.Location = new System.Drawing.Point(349, 44);
-            this.btnAlertEdit.Name = "btnAlertEdit";
-            this.btnAlertEdit.Size = new System.Drawing.Size(303, 61);
-            this.btnAlertEdit.TabIndex = 102;
-            this.btnAlertEdit.Text = "Edit";
-            this.btnAlertEdit.UseVisualStyleBackColor = false;
-            this.btnAlertEdit.Click += new System.EventHandler(this.btnAlertEdit_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(5, 18);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(86, 20);
-            this.label18.TabIndex = 101;
-            this.label18.Text = "Alert List:";
-            // 
-            // lbxAlerts
-            // 
-            this.lbxAlerts.FormattingEnabled = true;
-            this.lbxAlerts.Location = new System.Drawing.Point(9, 44);
-            this.lbxAlerts.Name = "lbxAlerts";
-            this.lbxAlerts.Size = new System.Drawing.Size(334, 485);
-            this.lbxAlerts.TabIndex = 100;
-            this.lbxAlerts.SelectedIndexChanged += new System.EventHandler(this.btnAlertView_Click);
-            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1723,7 +1625,7 @@
             this.tabPage3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(665, 552);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Device Notes";
@@ -1889,7 +1791,7 @@
             this.tabPage1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(665, 552);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Devices";
@@ -2621,7 +2523,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.ItemSize = new System.Drawing.Size(72, 18);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
@@ -2659,9 +2560,9 @@
             this.tabPage2.Controls.Add(this.btn_tt2);
             this.tabPage2.Controls.Add(this.btn_tt1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(665, 552);
             this.tabPage2.TabIndex = 5;
             this.tabPage2.Text = "Tim Tab";
@@ -2673,7 +2574,7 @@
             this.btn_tt24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt24.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt24.Location = new System.Drawing.Point(521, 437);
-            this.btn_tt24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt24.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt24.Name = "btn_tt24";
             this.btn_tt24.Size = new System.Drawing.Size(143, 83);
             this.btn_tt24.TabIndex = 23;
@@ -2688,7 +2589,7 @@
             this.btn_tt23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt23.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt23.Location = new System.Drawing.Point(521, 351);
-            this.btn_tt23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt23.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt23.Name = "btn_tt23";
             this.btn_tt23.Size = new System.Drawing.Size(143, 83);
             this.btn_tt23.TabIndex = 22;
@@ -2703,7 +2604,7 @@
             this.btn_tt22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt22.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt22.Location = new System.Drawing.Point(521, 264);
-            this.btn_tt22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt22.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt22.Name = "btn_tt22";
             this.btn_tt22.Size = new System.Drawing.Size(143, 83);
             this.btn_tt22.TabIndex = 21;
@@ -2718,7 +2619,7 @@
             this.btn_tt21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt21.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt21.Location = new System.Drawing.Point(521, 177);
-            this.btn_tt21.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt21.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt21.Name = "btn_tt21";
             this.btn_tt21.Size = new System.Drawing.Size(143, 83);
             this.btn_tt21.TabIndex = 20;
@@ -2733,7 +2634,7 @@
             this.btn_tt20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt20.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt20.Location = new System.Drawing.Point(521, 91);
-            this.btn_tt20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt20.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt20.Name = "btn_tt20";
             this.btn_tt20.Size = new System.Drawing.Size(143, 83);
             this.btn_tt20.TabIndex = 19;
@@ -2748,7 +2649,7 @@
             this.btn_tt19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt19.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt19.Location = new System.Drawing.Point(521, 4);
-            this.btn_tt19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt19.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt19.Name = "btn_tt19";
             this.btn_tt19.Size = new System.Drawing.Size(143, 83);
             this.btn_tt19.TabIndex = 18;
@@ -2763,7 +2664,7 @@
             this.btn_tt18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt18.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt18.Location = new System.Drawing.Point(373, 437);
-            this.btn_tt18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt18.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt18.Name = "btn_tt18";
             this.btn_tt18.Size = new System.Drawing.Size(143, 83);
             this.btn_tt18.TabIndex = 17;
@@ -2778,7 +2679,7 @@
             this.btn_tt17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt17.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt17.Location = new System.Drawing.Point(373, 351);
-            this.btn_tt17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt17.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt17.Name = "btn_tt17";
             this.btn_tt17.Size = new System.Drawing.Size(143, 83);
             this.btn_tt17.TabIndex = 16;
@@ -2793,7 +2694,7 @@
             this.btn_tt16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt16.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt16.Location = new System.Drawing.Point(373, 264);
-            this.btn_tt16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt16.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt16.Name = "btn_tt16";
             this.btn_tt16.Size = new System.Drawing.Size(143, 83);
             this.btn_tt16.TabIndex = 15;
@@ -2808,7 +2709,7 @@
             this.btn_tt15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt15.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt15.Location = new System.Drawing.Point(373, 177);
-            this.btn_tt15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt15.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt15.Name = "btn_tt15";
             this.btn_tt15.Size = new System.Drawing.Size(143, 83);
             this.btn_tt15.TabIndex = 14;
@@ -2823,7 +2724,7 @@
             this.btn_tt14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt14.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt14.Location = new System.Drawing.Point(373, 91);
-            this.btn_tt14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt14.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt14.Name = "btn_tt14";
             this.btn_tt14.Size = new System.Drawing.Size(143, 83);
             this.btn_tt14.TabIndex = 13;
@@ -2838,7 +2739,7 @@
             this.btn_tt13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt13.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt13.Location = new System.Drawing.Point(373, 4);
-            this.btn_tt13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt13.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt13.Name = "btn_tt13";
             this.btn_tt13.Size = new System.Drawing.Size(143, 83);
             this.btn_tt13.TabIndex = 12;
@@ -2853,7 +2754,7 @@
             this.btn_tt12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt12.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt12.Location = new System.Drawing.Point(154, 437);
-            this.btn_tt12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt12.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt12.Name = "btn_tt12";
             this.btn_tt12.Size = new System.Drawing.Size(143, 83);
             this.btn_tt12.TabIndex = 11;
@@ -2868,7 +2769,7 @@
             this.btn_tt11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt11.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt11.Location = new System.Drawing.Point(154, 351);
-            this.btn_tt11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt11.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt11.Name = "btn_tt11";
             this.btn_tt11.Size = new System.Drawing.Size(143, 83);
             this.btn_tt11.TabIndex = 10;
@@ -2883,7 +2784,7 @@
             this.btn_tt10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt10.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt10.Location = new System.Drawing.Point(154, 264);
-            this.btn_tt10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt10.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt10.Name = "btn_tt10";
             this.btn_tt10.Size = new System.Drawing.Size(143, 83);
             this.btn_tt10.TabIndex = 9;
@@ -2898,7 +2799,7 @@
             this.btn_tt9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt9.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt9.Location = new System.Drawing.Point(154, 177);
-            this.btn_tt9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt9.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt9.Name = "btn_tt9";
             this.btn_tt9.Size = new System.Drawing.Size(143, 83);
             this.btn_tt9.TabIndex = 8;
@@ -2913,7 +2814,7 @@
             this.btn_tt8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt8.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt8.Location = new System.Drawing.Point(154, 91);
-            this.btn_tt8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt8.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt8.Name = "btn_tt8";
             this.btn_tt8.Size = new System.Drawing.Size(143, 83);
             this.btn_tt8.TabIndex = 7;
@@ -2928,7 +2829,7 @@
             this.btn_tt7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt7.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt7.Location = new System.Drawing.Point(154, 4);
-            this.btn_tt7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt7.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt7.Name = "btn_tt7";
             this.btn_tt7.Size = new System.Drawing.Size(143, 83);
             this.btn_tt7.TabIndex = 6;
@@ -2943,7 +2844,7 @@
             this.btn_tt6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt6.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt6.Location = new System.Drawing.Point(7, 437);
-            this.btn_tt6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt6.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt6.Name = "btn_tt6";
             this.btn_tt6.Size = new System.Drawing.Size(143, 83);
             this.btn_tt6.TabIndex = 5;
@@ -2958,7 +2859,7 @@
             this.btn_tt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt5.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt5.Location = new System.Drawing.Point(7, 351);
-            this.btn_tt5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt5.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt5.Name = "btn_tt5";
             this.btn_tt5.Size = new System.Drawing.Size(143, 83);
             this.btn_tt5.TabIndex = 4;
@@ -2973,7 +2874,7 @@
             this.btn_tt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt4.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt4.Location = new System.Drawing.Point(7, 264);
-            this.btn_tt4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt4.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt4.Name = "btn_tt4";
             this.btn_tt4.Size = new System.Drawing.Size(143, 83);
             this.btn_tt4.TabIndex = 3;
@@ -2988,7 +2889,7 @@
             this.btn_tt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt3.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt3.Location = new System.Drawing.Point(7, 177);
-            this.btn_tt3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt3.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt3.Name = "btn_tt3";
             this.btn_tt3.Size = new System.Drawing.Size(143, 83);
             this.btn_tt3.TabIndex = 2;
@@ -3003,7 +2904,7 @@
             this.btn_tt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt2.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt2.Location = new System.Drawing.Point(7, 91);
-            this.btn_tt2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt2.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt2.Name = "btn_tt2";
             this.btn_tt2.Size = new System.Drawing.Size(143, 83);
             this.btn_tt2.TabIndex = 1;
@@ -3018,7 +2919,7 @@
             this.btn_tt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tt1.ForeColor = System.Drawing.Color.Cyan;
             this.btn_tt1.Location = new System.Drawing.Point(7, 4);
-            this.btn_tt1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tt1.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tt1.Name = "btn_tt1";
             this.btn_tt1.Size = new System.Drawing.Size(143, 83);
             this.btn_tt1.TabIndex = 0;
@@ -3094,8 +2995,6 @@
             this.ctmcust16.ResumeLayout(false);
             this.ctmcust15.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -3303,14 +3202,6 @@
         private System.Windows.Forms.ToolStripMenuItem BOCCPMenu;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btn_CBManage;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button btnAlertsAdd;
-        private System.Windows.Forms.RichTextBox rtbAlertView;
-        private System.Windows.Forms.Button btnAlertDelete;
-        private System.Windows.Forms.Button btnAlertEdit;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ListBox lbxAlerts;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.RichTextBox tbxOther;
