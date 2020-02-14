@@ -74,7 +74,7 @@ namespace Steve_s_Super_Support_Console
                 }
                 else
                 {
-                    Environment.Exit(5);
+                    //Environment.Exit(5);
                 }
             }
 
@@ -720,19 +720,20 @@ namespace Steve_s_Super_Support_Console
                 }
             }
         }
-
-
+        
         void loadAlerts()
         {
             //string[] Alerts = File.ReadAllLines(getConfigValue("alerts"), Encoding.UTF8);
             DirectoryInfo dir = new DirectoryInfo(getConfigValue("site_alerts_dir"));
             FileInfo[] files = dir.GetFiles("*.txt");
-            foreach(FileInfo f in files)
+            foreach (FileInfo f in files)
             {
+                //MessageBox.Show("\"" + f.Name + "\" - \"" + SiteID + "\"" );
                 if(f.Name == $"{SiteID}.txt")
                 {
                     string[] at = File.ReadAllLines(f.FullName);
                     TextViewer tv = new TextViewer(at, $"Site alert {SiteID}");
+                    tv.Show();
                 }
             }
             /*
@@ -786,7 +787,7 @@ namespace Steve_s_Super_Support_Console
             {
                 pingDevices();
             }
-        exit:; // important exit remains above alerts & LoadActive
+            exit:; // important exit remains above alerts & LoadActive
             loadAlerts();
             LoadActive = false;
         }
@@ -3270,7 +3271,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.0.2.0";
+        public string version = "4.1.0.0";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
