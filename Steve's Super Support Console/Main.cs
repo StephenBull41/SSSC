@@ -3271,7 +3271,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.1.0.0";
+        public string version = "4.1.1.0";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
@@ -3452,7 +3452,7 @@ namespace Steve_s_Super_Support_Console
             File.WriteAllText($@"{getConfigValue("resources_folder")}UCheck_{RandS}.bat", @"cd\" + Environment.NewLine + "@Echo off" + Environment.NewLine + $@"PsLoggedon.exe \\{deviceIP}" + Environment.NewLine + $@"del {getConfigValue("resources_folder")}UCheck_{RandS}.bat && pause");
             Thread.Sleep(100);
             System.Diagnostics.Process.Start($@"{getConfigValue("resources_folder")}UCheck_{RandS}.bat");
-        exit:;
+            exit:;
         }
 
         public bool CompareNoCase(string checkValue, string IsIn) // check if first value is in second ignoring case
@@ -3540,6 +3540,7 @@ namespace Steve_s_Super_Support_Console
             DialogResult DR = MessageBox.Show("Do a murder?", "Namos Murderator 5000", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (DR == DialogResult.Yes)
             {
+                File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 1 at {DateTime.Now}" + Environment.NewLine);
                 string[] allLines = { $"@RCMD \\\\{MWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
                 string RandS = GetRand8();
                 TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
@@ -3548,6 +3549,7 @@ namespace Steve_s_Super_Support_Console
 
         private void isPOSHangToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            File.AppendAllText(getConfigValue("hangman"), $"{currentUser} ran Is POS hung on site {SiteID} at {DateTime.Now}" + Environment.NewLine);
             string[] allLines = {
                 //$"@RCMD \\\\{MWSIP} tasklist | sort /+{sortOffset}",
                 $"@RCMD \\\\{MWSIP} tasklist /fi \"MEMUSAGE gt 100000\"",
@@ -3592,6 +3594,7 @@ namespace Steve_s_Super_Support_Console
             DialogResult DR = MessageBox.Show("Do a murder?", "Namos Murderator 5000", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (DR == DialogResult.Yes)
             {
+                File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 2 at {DateTime.Now}" + Environment.NewLine);
                 string[] allLines = { $"@RCMD \\\\{CWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
                 string RandS = GetRand8();
                 TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
@@ -3603,6 +3606,7 @@ namespace Steve_s_Super_Support_Console
             DialogResult DR = MessageBox.Show("Do a murder?", "Namos Murderator 5000", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (DR == DialogResult.Yes)
             {
+                File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 3 at {DateTime.Now}" + Environment.NewLine);
                 string[] allLines = { $"@RCMD \\\\{CWS2IP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
                 string RandS = GetRand8();
                 TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
@@ -3614,6 +3618,7 @@ namespace Steve_s_Super_Support_Console
             DialogResult DR = MessageBox.Show("Do a murder?", "Namos Murderator 5000", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (DR == DialogResult.Yes)
             {
+                File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 4 at {DateTime.Now}" + Environment.NewLine);
                 string[] allLines = { $"@RCMD \\\\{CWS3IP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
                 string RandS = GetRand8();
                 TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
@@ -3639,6 +3644,18 @@ namespace Steve_s_Super_Support_Console
         {
             tbxSiteID.SelectionStart = 0;
             tbxSiteID.SelectionLength = tbxSiteID.Text.Length;
+        }
+
+        private void isBOSHungToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            File.AppendAllText(getConfigValue("hangman"), $"{currentUser} ran Is BOS hung on site {SiteID} at {DateTime.Now}" + Environment.NewLine);
+            string[] allLines = {
+                //$"@RCMD \\\\{BOCIP} tasklist | sort /+{sortOffset}",
+                $"@RCMD \\\\{BOCIP} tasklist /fi \"MEMUSAGE gt 100000\"",
+                $"@RCMD \\\\{BOCIP} uptime",
+                $"pause"};
+            string RandS = GetRand8();
+            TBatMan($@"{getConfigValue("resources_folder")}POSHang_{RandS}.bat", allLines, 20000);
         }
     }
 
