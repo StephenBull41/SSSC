@@ -744,7 +744,7 @@ namespace Steve_s_Super_Support_Console
             {
                 lock (lblPAPTID)
                 {
-                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = version; })); ;
+                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = namosVersion; })); ;
                 }
             }
             else
