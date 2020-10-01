@@ -729,13 +729,18 @@ namespace Steve_s_Super_Support_Console
         {
             Stopwatch s = new Stopwatch();
             s.Start();
-            string keyName = @"\\" + SiteID + @"-mws1\" + getConfigValue("NamosVersionKeyName");
-            string valueName = getConfigValue("NamosVersionValueName");
-            string namosVersion = Registry.GetValue(keyName, valueName, "not found").ToString();
+            
+            RegistryKey r;
+            string remotehost = SiteID + "-mws1";
+            r = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, remotehost).OpenSubKey(getConfigValue("NamosVersionKeyName"));
+            string namosVersion = r.GetValue(getConfigValue("NamosVersionValueName")).ToString();
+            
             s.Stop();
+            File.WriteAllText("C:\\SSSC\\Logs\\RegQueryOut.txt", $"Query on {SiteID} took {s.ElapsedMilliseconds.ToString()}ms, version was ${namosVersion}");
+
             //to do: create config values to match project numbers with software versions 
 
-            if(s.ElapsedMilliseconds <= Convert.ToInt32(getConfigValue("RegQueryTimeout")))
+            if (s.ElapsedMilliseconds <= Convert.ToInt32(getConfigValue("RegQueryTimeout")))
             {
                 lock (lblPAPTID)
                 {
@@ -746,12 +751,10 @@ namespace Steve_s_Super_Support_Console
             {
                 lock (lblPAPTID)
                 {
-                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Timeout"; })); ;
+                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Req Timeout"; })); ;
                 }
             }
-
-            //remove me after testing
-            File.WriteAllText("C:\\SSSC\\Logs\\RegQueryOut.txt", $"Query on {SiteID} took {s.ElapsedMilliseconds.ToString()}ms");
+            
         }
         
         void loadAlerts()
