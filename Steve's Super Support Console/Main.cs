@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Linq;
 using System.Drawing;
+using Microsoft.Win32;
 using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -715,10 +716,42 @@ namespace Steve_s_Super_Support_Console
                     }
                     lblPSTN.Text = PSTNFNN;
                     lblStarBOS.Text = StarBOS;
-                    lblPAPTID.Text = PAPTID;
+                    //lblPAPTID.Text = PAPTID; obsolete
                     lblNetTemplate.Text = GetNetworkTemplate(SiteID);
                 }
             }
+            Thread t = new Thread(getNamosVersion);
+            t.IsBackground = false;
+            t.Start();
+        }
+
+        void getNamosVersion()
+        {
+            Stopwatch s = new Stopwatch();
+            s.Start();
+            string keyName = @"\\" + SiteID + @"-mws1\" + getConfigValue("NamosVersionKeyName");
+            string valueName = getConfigValue("NamosVersionValueName");
+            string namosVersion = Registry.GetValue(keyName, valueName, "not found").ToString();
+            s.Stop();
+            //to do: create config values to match project numbers with software versions 
+
+            if(s.ElapsedMilliseconds <= Convert.ToInt32(getConfigValue("RegQueryTimeout")))
+            {
+                lock (lblPAPTID)
+                {
+                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = version; })); ;
+                }
+            }
+            else
+            {
+                lock (lblPAPTID)
+                {
+                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Timeout"; })); ;
+                }
+            }
+
+            //remove me after testing
+            File.WriteAllText("C:\\SSSC\\Logs\\RegQueryOut.txt", $"Query on {SiteID} took {s.ElapsedMilliseconds.ToString()}ms");
         }
         
         void loadAlerts()
