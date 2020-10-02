@@ -738,7 +738,11 @@ namespace Steve_s_Super_Support_Console
             s.Stop();
             File.WriteAllText("C:\\SSSC\\Logs\\RegQueryOut.txt", $"Query on {SiteID} took {s.ElapsedMilliseconds.ToString()}ms, version was ${namosVersion}");
 
-            //to do: create config values to match project numbers with software versions 
+            //Convert Namos project number to software version
+            //example config line "1.2.3.4=version6"
+            namosVersion = getConfigValue(namosVersion);
+
+            
 
             if (s.ElapsedMilliseconds <= Convert.ToInt32(getConfigValue("RegQueryTimeout")))
             {

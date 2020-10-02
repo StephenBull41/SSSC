@@ -89,6 +89,7 @@
             this.remoteConnectToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.getLoggedUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctmBOCCD = new System.Windows.Forms.ToolStripMenuItem();
+            this.isBOSHungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctmPostec = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.PostecCPMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.PostecCIPMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -295,7 +296,6 @@
             this.btn_tt3 = new System.Windows.Forms.Button();
             this.btn_tt2 = new System.Windows.Forms.Button();
             this.btn_tt1 = new System.Windows.Forms.Button();
-            this.isBOSHungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctmPos1.SuspendLayout();
             this.ctmPos4.SuspendLayout();
             this.ctmPos3.SuspendLayout();
@@ -801,42 +801,49 @@
             this.ctmBOCCD,
             this.isBOSHungToolStripMenuItem});
             this.ctmBOC.Name = "ctmPos1";
-            this.ctmBOC.Size = new System.Drawing.Size(181, 158);
+            this.ctmBOC.Size = new System.Drawing.Size(164, 136);
             // 
             // BOCCPMenu
             // 
             this.BOCCPMenu.Name = "BOCCPMenu";
-            this.BOCCPMenu.Size = new System.Drawing.Size(180, 22);
+            this.BOCCPMenu.Size = new System.Drawing.Size(163, 22);
             this.BOCCPMenu.Text = "Constant Ping";
             this.BOCCPMenu.Click += new System.EventHandler(this.BOCCPMenu_Click);
             // 
             // BOCCIPMenu
             // 
             this.BOCCIPMenu.Name = "BOCCIPMenu";
-            this.BOCCIPMenu.Size = new System.Drawing.Size(180, 22);
+            this.BOCCIPMenu.Size = new System.Drawing.Size(163, 22);
             this.BOCCIPMenu.Text = "Copy IP";
             this.BOCCIPMenu.Click += new System.EventHandler(this.BOCCIPMenu_Click);
             // 
             // remoteConnectToolStripMenuItem4
             // 
             this.remoteConnectToolStripMenuItem4.Name = "remoteConnectToolStripMenuItem4";
-            this.remoteConnectToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.remoteConnectToolStripMenuItem4.Size = new System.Drawing.Size(163, 22);
             this.remoteConnectToolStripMenuItem4.Text = "Remote Connect";
             this.remoteConnectToolStripMenuItem4.Click += new System.EventHandler(this.remoteConnectToolStripMenuItem4_Click);
             // 
             // getLoggedUserToolStripMenuItem
             // 
             this.getLoggedUserToolStripMenuItem.Name = "getLoggedUserToolStripMenuItem";
-            this.getLoggedUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.getLoggedUserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.getLoggedUserToolStripMenuItem.Text = "Get logged user";
             this.getLoggedUserToolStripMenuItem.Click += new System.EventHandler(this.getLoggedUserToolStripMenuItem_Click);
             // 
             // ctmBOCCD
             // 
             this.ctmBOCCD.Name = "ctmBOCCD";
-            this.ctmBOCCD.Size = new System.Drawing.Size(180, 22);
+            this.ctmBOCCD.Size = new System.Drawing.Size(163, 22);
             this.ctmBOCCD.Text = "C:";
             this.ctmBOCCD.Click += new System.EventHandler(this.ctmBOCCD_Click);
+            // 
+            // isBOSHungToolStripMenuItem
+            // 
+            this.isBOSHungToolStripMenuItem.Name = "isBOSHungToolStripMenuItem";
+            this.isBOSHungToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.isBOSHungToolStripMenuItem.Text = "Is BOS hang?";
+            this.isBOSHungToolStripMenuItem.Click += new System.EventHandler(this.isBOSHungToolStripMenuItem_Click);
             // 
             // ctmPostec
             // 
@@ -2356,9 +2363,9 @@
             this.label37.ForeColor = System.Drawing.Color.White;
             this.label37.Location = new System.Drawing.Point(18, 493);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(70, 17);
+            this.label37.Size = new System.Drawing.Size(80, 17);
             this.label37.TabIndex = 91;
-            this.label37.Text = "P@P TID:";
+            this.label37.Text = "Namos ver:";
             // 
             // pbx_POS7
             // 
@@ -2928,13 +2935,6 @@
             this.btn_tt1.Text = "button2";
             this.btn_tt1.UseVisualStyleBackColor = false;
             this.btn_tt1.Click += new System.EventHandler(this.btn_tt1_Click);
-            // 
-            // isBOSHungToolStripMenuItem
-            // 
-            this.isBOSHungToolStripMenuItem.Name = "isBOSHungToolStripMenuItem";
-            this.isBOSHungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.isBOSHungToolStripMenuItem.Text = "Is BOS hang?";
-            this.isBOSHungToolStripMenuItem.Click += new System.EventHandler(this.isBOSHungToolStripMenuItem_Click);
             // 
             // Main
             // 
