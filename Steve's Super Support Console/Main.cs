@@ -3311,7 +3311,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.1.1.0";
+        public string version = "4.2.0.0";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
@@ -3581,9 +3581,9 @@ namespace Steve_s_Super_Support_Console
             if (DR == DialogResult.Yes)
             {
                 File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 1 at {DateTime.Now}" + Environment.NewLine);
-                string[] allLines = { $"@RCMD \\\\{MWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
+                string[] allLines = { $"@RCMD \\\\{MWSIP} namosctl stop namosnt", "pause" };//string[] allLines = { $"@RCMD \\\\{MWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
                 string RandS = GetRand8();
-                TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
+                TBatMan($@"{getConfigValue("resources_folder")}namostctl_stop_namosnt_{RandS}.bat", allLines, 20000);
             }
         }
 
