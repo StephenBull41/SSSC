@@ -727,24 +727,29 @@ namespace Steve_s_Super_Support_Console
 
         void getNamosVersion()
         {
-            try //using a try here as if the target host is offline or non responsive we'll get an exception 
+            Stopwatch s = new Stopwatch();
+            s.Start();
+            RegistryKey r;
+            string namosVersion = "";
+            string remotehost = SiteID + "-mws1";
+            bool failed = false;
+            try
             {
-                Stopwatch s = new Stopwatch();
-                s.Start();
-
-                RegistryKey r;
-                string remotehost = SiteID + "-mws1";
                 r = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, remotehost).OpenSubKey(getConfigValue("NamosVersionKeyName"));
-                string namosVersion = r.GetValue(getConfigValue("NamosVersionValueName")).ToString();
+                namosVersion = r.GetValue(getConfigValue("NamosVersionValueName")).ToString();
+            }
+            catch (IOException)
+            {
+                failed = true;
+                this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "IO Exception"; })); ;
+            }           
 
-                s.Stop();
-                File.WriteAllText("C:\\SSSC\\Logs\\RegQueryOut.txt", $"Query on {SiteID} took {s.ElapsedMilliseconds.ToString()}ms, version was ${namosVersion}");
-
+            s.Stop();
+            if (!failed)
+            {
                 //Convert Namos project number to software version
                 //example config line "1.2.3.4=version6"
                 namosVersion = getConfigValue(namosVersion);
-
-
 
                 if (s.ElapsedMilliseconds <= Convert.ToInt32(getConfigValue("RegQueryTimeout")))
                 {
@@ -761,10 +766,6 @@ namespace Steve_s_Super_Support_Console
                     }
                 }
             }
-            catch
-            {
-                this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Req Timeout"; })); ;
-            }   
         }
         
         void loadAlerts()
@@ -3317,7 +3318,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.2.0.0";
+        public string version = "4.2.0.2";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
