@@ -727,38 +727,44 @@ namespace Steve_s_Super_Support_Console
 
         void getNamosVersion()
         {
-            Stopwatch s = new Stopwatch();
-            s.Start();
-            
-            RegistryKey r;
-            string remotehost = SiteID + "-mws1";
-            r = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, remotehost).OpenSubKey(getConfigValue("NamosVersionKeyName"));
-            string namosVersion = r.GetValue(getConfigValue("NamosVersionValueName")).ToString();
-            
-            s.Stop();
-            File.WriteAllText("C:\\SSSC\\Logs\\RegQueryOut.txt", $"Query on {SiteID} took {s.ElapsedMilliseconds.ToString()}ms, version was ${namosVersion}");
-
-            //Convert Namos project number to software version
-            //example config line "1.2.3.4=version6"
-            namosVersion = getConfigValue(namosVersion);
-
-            
-
-            if (s.ElapsedMilliseconds <= Convert.ToInt32(getConfigValue("RegQueryTimeout")))
+            try //using a try here as if the target host is offline or non responsive we'll get an exception 
             {
-                lock (lblPAPTID)
+                Stopwatch s = new Stopwatch();
+                s.Start();
+
+                RegistryKey r;
+                string remotehost = SiteID + "-mws1";
+                r = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, remotehost).OpenSubKey(getConfigValue("NamosVersionKeyName"));
+                string namosVersion = r.GetValue(getConfigValue("NamosVersionValueName")).ToString();
+
+                s.Stop();
+                File.WriteAllText("C:\\SSSC\\Logs\\RegQueryOut.txt", $"Query on {SiteID} took {s.ElapsedMilliseconds.ToString()}ms, version was ${namosVersion}");
+
+                //Convert Namos project number to software version
+                //example config line "1.2.3.4=version6"
+                namosVersion = getConfigValue(namosVersion);
+
+
+
+                if (s.ElapsedMilliseconds <= Convert.ToInt32(getConfigValue("RegQueryTimeout")))
                 {
-                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = namosVersion; })); ;
+                    lock (lblPAPTID)
+                    {
+                        this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = namosVersion; })); ;
+                    }
+                }
+                else
+                {
+                    lock (lblPAPTID)
+                    {
+                        this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Req Timeout"; })); ;
+                    }
                 }
             }
-            else
+            catch
             {
-                lock (lblPAPTID)
-                {
-                    this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Req Timeout"; })); ;
-                }
-            }
-            
+                this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Req Timeout"; })); ;
+            }   
         }
         
         void loadAlerts()
