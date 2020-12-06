@@ -3318,7 +3318,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.2.0.2";
+        public string version = "4.2.0.3";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
@@ -3588,9 +3588,9 @@ namespace Steve_s_Super_Support_Console
             if (DR == DialogResult.Yes)
             {
                 File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 1 at {DateTime.Now}" + Environment.NewLine);
-                string[] allLines = { $"@RCMD \\\\{MWSIP} namosctl stop namosnt", "pause" };//string[] allLines = { $"@RCMD \\\\{MWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
+                string[] allLines = { $"@RCMD \\\\{MWSIP} namosctl stop namosnt", $"@RCMD \\\\{MWSIP} namosctl start namosnt"};//string[] allLines = { $"@RCMD \\\\{MWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
                 string RandS = GetRand8();
-                TBatMan($@"{getConfigValue("resources_folder")}namostctl_stop_namosnt_{RandS}.bat", allLines, 20000);
+                TBatMan($@"{getConfigValue("resources_folder")}NamosStopStart_{RandS}.bat", allLines, 20000);
             }
         }
 
@@ -3642,9 +3642,9 @@ namespace Steve_s_Super_Support_Console
             if (DR == DialogResult.Yes)
             {
                 File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 2 at {DateTime.Now}" + Environment.NewLine);
-                string[] allLines = { $"@RCMD \\\\{CWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
+                string[] allLines = { $"@RCMD \\\\{MWSIP} namosctl stop namosnt", $"@RCMD \\\\{MWSIP} namosctl start namosnt" };
                 string RandS = GetRand8();
-                TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
+                TBatMan($@"{getConfigValue("resources_folder")}NamosStopStart_{RandS}.bat", allLines, 20000);
             }
         }
 
@@ -3654,9 +3654,9 @@ namespace Steve_s_Super_Support_Console
             if (DR == DialogResult.Yes)
             {
                 File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 3 at {DateTime.Now}" + Environment.NewLine);
-                string[] allLines = { $"@RCMD \\\\{CWS2IP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
+                string[] allLines = { $"@RCMD \\\\{MWSIP} namosctl stop namosnt", $"@RCMD \\\\{MWSIP} namosctl start namosnt" };
                 string RandS = GetRand8();
-                TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
+                TBatMan($@"{getConfigValue("resources_folder")}NamosStopStart_{RandS}.bat", allLines, 20000);
             }
         }
 
@@ -3666,9 +3666,9 @@ namespace Steve_s_Super_Support_Console
             if (DR == DialogResult.Yes)
             {
                 File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 4 at {DateTime.Now}" + Environment.NewLine);
-                string[] allLines = { $"@RCMD \\\\{CWS3IP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
+                string[] allLines = { $"@RCMD \\\\{MWSIP} namosctl stop namosnt", $"@RCMD \\\\{MWSIP} namosctl start namosnt" };
                 string RandS = GetRand8();
-                TBatMan($@"{getConfigValue("resources_folder")}ServerProcessRestart_{RandS}.bat", allLines, 20000);
+                TBatMan($@"{getConfigValue("resources_folder")}NamosStopStart_{RandS}.bat", allLines, 20000);
             }
         }
 
@@ -3703,6 +3703,28 @@ namespace Steve_s_Super_Support_Console
                 $"pause"};
             string RandS = GetRand8();
             TBatMan($@"{getConfigValue("resources_folder")}POSHang_{RandS}.bat", allLines, 20000);
+        }
+
+        private void traceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!fnc_blacklisted)
+            {
+                no_context++;
+                traceToolStripMenuItem.Enabled = false;
+                try
+                {
+                    if (SiteID != "nositeloaded")
+                    {
+                        Process.Start($@"\\{MWSIP}\c$\sni\namos\trace");
+                    }
+                    traceToolStripMenuItem.Enabled = true;
+                }
+                catch (Exception)
+                {
+                    //no connection to boc
+                    traceToolStripMenuItem.Enabled = true;
+                }
+            }
         }
     }
 

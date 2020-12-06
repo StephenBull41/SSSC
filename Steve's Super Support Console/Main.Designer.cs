@@ -296,6 +296,7 @@
             this.btn_tt3 = new System.Windows.Forms.Button();
             this.btn_tt2 = new System.Windows.Forms.Button();
             this.btn_tt1 = new System.Windows.Forms.Button();
+            this.traceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctmPos1.SuspendLayout();
             this.ctmPos4.SuspendLayout();
             this.ctmPos3.SuspendLayout();
@@ -401,75 +402,76 @@
             this.cToolStripMenuItem,
             this.eJournalToolStripMenuItem,
             this.P1Cmos,
+            this.traceToolStripMenuItem,
             this.toolStripSeparator5,
             this.namosNTKillToolStripMenuItem,
             this.isPOSHangToolStripMenuItem});
             this.ctmPos1.Name = "ctmPos1";
-            this.ctmPos1.Size = new System.Drawing.Size(164, 192);
+            this.ctmPos1.Size = new System.Drawing.Size(181, 236);
             // 
             // P1CPing
             // 
             this.P1CPing.Name = "P1CPing";
-            this.P1CPing.Size = new System.Drawing.Size(163, 22);
+            this.P1CPing.Size = new System.Drawing.Size(180, 22);
             this.P1CPing.Text = "Constant Ping";
             this.P1CPing.Click += new System.EventHandler(this.P1CPing_Click);
             // 
             // P1CopyIP
             // 
             this.P1CopyIP.Name = "P1CopyIP";
-            this.P1CopyIP.Size = new System.Drawing.Size(163, 22);
+            this.P1CopyIP.Size = new System.Drawing.Size(180, 22);
             this.P1CopyIP.Text = "Copy IP";
             this.P1CopyIP.Click += new System.EventHandler(this.P1CopyIP_Click);
             // 
             // remoteConnectToolStripMenuItem
             // 
             this.remoteConnectToolStripMenuItem.Name = "remoteConnectToolStripMenuItem";
-            this.remoteConnectToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.remoteConnectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.remoteConnectToolStripMenuItem.Text = "Remote Connect";
             this.remoteConnectToolStripMenuItem.Click += new System.EventHandler(this.remoteConnectToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // cToolStripMenuItem
             // 
             this.cToolStripMenuItem.Name = "cToolStripMenuItem";
-            this.cToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.cToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cToolStripMenuItem.Text = "C:";
             this.cToolStripMenuItem.Click += new System.EventHandler(this.cToolStripMenuItem_Click);
             // 
             // eJournalToolStripMenuItem
             // 
             this.eJournalToolStripMenuItem.Name = "eJournalToolStripMenuItem";
-            this.eJournalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.eJournalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eJournalToolStripMenuItem.Text = "E-Journal";
             this.eJournalToolStripMenuItem.Click += new System.EventHandler(this.eJournalToolStripMenuItem_Click);
             // 
             // P1Cmos
             // 
             this.P1Cmos.Name = "P1Cmos";
-            this.P1Cmos.Size = new System.Drawing.Size(163, 22);
+            this.P1Cmos.Size = new System.Drawing.Size(180, 22);
             this.P1Cmos.Text = "CMOS";
             this.P1Cmos.Click += new System.EventHandler(this.P1Cmos_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(160, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // namosNTKillToolStripMenuItem
             // 
             this.namosNTKillToolStripMenuItem.Name = "namosNTKillToolStripMenuItem";
-            this.namosNTKillToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.namosNTKillToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.namosNTKillToolStripMenuItem.Text = "NamosNT kill";
             this.namosNTKillToolStripMenuItem.Click += new System.EventHandler(this.namosNTKillToolStripMenuItem_Click);
             // 
             // isPOSHangToolStripMenuItem
             // 
             this.isPOSHangToolStripMenuItem.Name = "isPOSHangToolStripMenuItem";
-            this.isPOSHangToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.isPOSHangToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.isPOSHangToolStripMenuItem.Text = "Is POS Hang?";
             this.isPOSHangToolStripMenuItem.Click += new System.EventHandler(this.isPOSHangToolStripMenuItem_Click);
             // 
@@ -2936,6 +2938,13 @@
             this.btn_tt1.UseVisualStyleBackColor = false;
             this.btn_tt1.Click += new System.EventHandler(this.btn_tt1_Click);
             // 
+            // traceToolStripMenuItem
+            // 
+            this.traceToolStripMenuItem.Name = "traceToolStripMenuItem";
+            this.traceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.traceToolStripMenuItem.Text = "Trace";
+            this.traceToolStripMenuItem.Click += new System.EventHandler(this.traceToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -3320,6 +3329,7 @@
         private System.Windows.Forms.Button btn_tt2;
         private System.Windows.Forms.Button btn_tt1;
         private System.Windows.Forms.ToolStripMenuItem isBOSHungToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem traceToolStripMenuItem;
     }
 }
 
