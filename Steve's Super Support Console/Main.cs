@@ -3120,6 +3120,22 @@ namespace Steve_s_Super_Support_Console
                 File.WriteAllLines(getConfigValue("stats_file"), statsfile);
             }
 
+            /*
+            so someone polled sites almost 11 thousand time in one day
+            what the fuck???(why you gotta poison my stats like that)
+            there's only like <800 sites in the whole fleet
+            the only way to increment the counter is to press enter to load a site or to click the load button(wouldn't suprise me)
+            someone did that 11000 times in a day ...
+
+            adding a bit of extra logging here to try find who's playing cookie clicker in the console lol
+            fastest I could ever work in L1 was about 1 call / minute during an outage so loading 100 sites in an hour should be totally unreasonable for someone not sleeping on their keyboard
+            */
+
+            if(loaded >= 100)
+            {
+                File.AppendAllText(getConfigValue("high_stats_file"), (currentUser + " loaded " + loaded + " sites, " + DateTime.Now.ToString("dd/MM - HH:mm:ss") + Environment.NewLine));
+            }
+
             loaded = 0;
             sites_nuked = 0;
             pre_auths_explained = 0;
@@ -3323,7 +3339,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.2.0.3";
+        public string version = "4.2.0.4";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
