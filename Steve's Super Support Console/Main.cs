@@ -742,7 +742,12 @@ namespace Steve_s_Super_Support_Console
             {
                 failed = true;
                 this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "IO Exception"; })); ;
-            }           
+            }  
+            catch (System.Security.SecurityException)
+            {
+                failed = true;
+                this.Invoke(new MethodInvoker(delegate { lblPAPTID.Text = "Security Exception"; })); ;
+            }
 
             s.Stop();
             if (!failed)
