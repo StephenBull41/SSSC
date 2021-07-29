@@ -3106,13 +3106,13 @@ namespace Steve_s_Super_Support_Console
             else
             {
                 //add onto the current day
-                loaded += Convert.ToInt32(last_line[3]);
-                sites_nuked += Convert.ToInt32(last_line[4]);
-                pre_auths_explained += Convert.ToInt32(last_line[5]);
-                corners_cut += Convert.ToInt32(last_line[6]);
-                EMG_resets_pushed += Convert.ToInt32(last_line[7]);
-                no_context += Convert.ToInt32(last_line[8]);
-                dont_use_the_acronym += Convert.ToInt32(last_line[9]);
+                int t_loaded = loaded + Convert.ToInt32(last_line[3]);
+                int t_sites_nuked = sites_nuked + Convert.ToInt32(last_line[4]);
+                int t_pre_auths_explained = pre_auths_explained + Convert.ToInt32(last_line[5]);
+                int t_corners_cut = corners_cut + Convert.ToInt32(last_line[6]);
+                int t_EMG_resets_pushed = EMG_resets_pushed + Convert.ToInt32(last_line[7]);
+                int t_no_context = no_context + Convert.ToInt32(last_line[8]);
+                int t_dont_use_the_acronym = dont_use_the_acronym + Convert.ToInt32(last_line[9]);
 
                 statsfile[statsfile.Length - 1] = DateTime.Today.Year + "," + DateTime.Today.Month + "," + DateTime.Today.Day +
                     "," + loaded + "," + sites_nuked + "," + pre_auths_explained + "," + corners_cut + "," + EMG_resets_pushed + "," + no_context + "," + dont_use_the_acronym + "," + DateTime.Today.DayOfWeek;
@@ -3121,14 +3121,10 @@ namespace Steve_s_Super_Support_Console
             }
 
             /*
-            so someone polled sites almost 11 thousand time in one day
-            what the fuck???(why you gotta poison my stats like that)
-            there's only like <800 sites in the whole fleet
-            the only way to increment the counter is to press enter to load a site or to click the load button(wouldn't suprise me)
-            someone did that 11000 times in a day ...
-
-            adding a bit of extra logging here to try find who's playing cookie clicker in the console lol
-            fastest I could ever work in L1 was about 1 call / minute during an outage so loading 100 sites in an hour should be totally unreasonable for someone not sleeping on their keyboard
+                Issue with stats appears to be counters(only loaded?) are not being reset before being re-applied, issue might be somewhere between the below file write & loaded = 0
+                current theory is loaded was being read in from the previous total of all users(>100) + current user total which would be fine but sometime between writing the high stats file & resetting the counter that value somehow doubles
+                possibly the app crashes before the counter is reset, this calls OnFormClose() (is that possible?) which again calls this function which would approx double the counter
+                need to check event logs within a day of one of these events to be sure of an app crash, changes above should fix absurd numbers
             */
 
             if(loaded >= 100)
