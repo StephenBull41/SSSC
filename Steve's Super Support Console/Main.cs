@@ -605,19 +605,22 @@ namespace Steve_s_Super_Support_Console
                 lastEdit = row[12];
                 WOWIP = row[13];
 
-                if (ID == SiteID)
+                if ((ID == SiteID) && (deCom != "True") && (!found))
                 {
+                    /*
                     if (deCom == "True")
                     {
                         lblMismatch.Text = "Warning: Closed Site";
                         lblSiteID2.ForeColor = Color.Red;
                         found = false;
                     }
+                    
                     else
                     {
+                    */
                         lblMismatch.Text = "";
                         found = true;
-                    }
+                    //}
 
                     if (ConType == "BDSL" || ConType == "3G Only")
                     {
