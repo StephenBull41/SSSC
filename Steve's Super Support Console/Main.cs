@@ -409,21 +409,44 @@ namespace Steve_s_Super_Support_Console
 
         void update_indicators(List<Site_Device> devices)
         {
+            bool check_SAH = false;
+            bool warnSAH = false;
+
             foreach(Site_Device d in devices)
             {
                 if (d.online)
                 {
+                    //if device is online indicate this by changing the indicator to a green colour
                     d.indicator.BackColor = Color.FromArgb(13, 239, 66);
-                    //check if the site has an SAH server & alert the operator if it does
-                    if (d.ip.Remove(0, d.ip.Length - 3) == getConfigValue("sah1ip") && getConfigValue("enable_sah_alert") == "true")
+                    //check if the site has an SAH server alert the operator
+                    if ((d.ip.Remove(0, d.ip.Length - 3) == getConfigValue("sah1ip")) && (getConfigValue("enable_sah_alert") == "true"))
                     {
-                        MessageBox.Show(getConfigValue("sah_alert_message"));
+                        warnSAH = true; //run this at the end of the method to allow all indicators to update before we freeze the UI
+                    }
+                    if (d.ip.Remove(0, d.ip.Length - 3) == getConfigValue("pos1ip"))
+                    {
+                        //if we get here we know pos 1 is online, checkSAH is to check if SAH should be up if it's not
+                        check_SAH = true; 
                     }
                 }
                 else
                 {
                     d.indicator.BackColor = Color.FromArgb(255, 0, 0);
                 }
+            }
+
+            if (check_SAH && !warnSAH)
+            {
+                //for prod validation
+                if (testmode)
+                {
+                    lblMismatch.Text = "checkSAH && !warnSAH reached";
+                }
+                lblMismatch.Text = checkSAH();
+            }
+            if (warnSAH)
+            {
+                MessageBox.Show(getConfigValue("sah_alert_message"));
             }
         }
 
@@ -845,6 +868,31 @@ namespace Steve_s_Super_Support_Console
             exit:; // important exit remains above alerts & LoadActive
             loadAlerts();
             LoadActive = false;
+        }
+
+        public string checkSAH()
+        {
+            //This method checks if a SAH server is expected when it can't be polled
+
+            string confPath = getConfigValue("tss");//path to the file we want to check
+            string termSAH = getConfigValue("termSAH");//what we expect to find if site is SAH
+
+            //this should run before we finish polling the site so we don't know if the target is online
+            try
+            {
+                string[] conf = File.ReadAllLines($@"\\{MWSIP}\{confPath}");
+                foreach(string line in conf)
+                {
+                    if (line.Contains(termSAH))
+                    {
+                        return "SAH controller expected";
+                    }
+                }
+
+                return null;
+            }
+            catch { return "Unable to access tss config"; };
+            
         }
 
         private void btnStreamLoader_Click(object sender, EventArgs e)
@@ -3338,7 +3386,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.2.0.5";
+        public string version = "4.2.1.0";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
