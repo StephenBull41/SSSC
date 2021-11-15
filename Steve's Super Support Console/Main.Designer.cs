@@ -38,6 +38,7 @@
             this.cToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eJournalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.P1Cmos = new System.Windows.Forms.ToolStripMenuItem();
+            this.traceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.namosNTKillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.isPOSHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -296,7 +297,8 @@
             this.btn_tt3 = new System.Windows.Forms.Button();
             this.btn_tt2 = new System.Windows.Forms.Button();
             this.btn_tt1 = new System.Windows.Forms.Button();
-            this.traceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblPumpControl = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.ctmPos1.SuspendLayout();
             this.ctmPos4.SuspendLayout();
             this.ctmPos3.SuspendLayout();
@@ -407,71 +409,78 @@
             this.namosNTKillToolStripMenuItem,
             this.isPOSHangToolStripMenuItem});
             this.ctmPos1.Name = "ctmPos1";
-            this.ctmPos1.Size = new System.Drawing.Size(181, 236);
+            this.ctmPos1.Size = new System.Drawing.Size(164, 214);
             // 
             // P1CPing
             // 
             this.P1CPing.Name = "P1CPing";
-            this.P1CPing.Size = new System.Drawing.Size(180, 22);
+            this.P1CPing.Size = new System.Drawing.Size(163, 22);
             this.P1CPing.Text = "Constant Ping";
             this.P1CPing.Click += new System.EventHandler(this.P1CPing_Click);
             // 
             // P1CopyIP
             // 
             this.P1CopyIP.Name = "P1CopyIP";
-            this.P1CopyIP.Size = new System.Drawing.Size(180, 22);
+            this.P1CopyIP.Size = new System.Drawing.Size(163, 22);
             this.P1CopyIP.Text = "Copy IP";
             this.P1CopyIP.Click += new System.EventHandler(this.P1CopyIP_Click);
             // 
             // remoteConnectToolStripMenuItem
             // 
             this.remoteConnectToolStripMenuItem.Name = "remoteConnectToolStripMenuItem";
-            this.remoteConnectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.remoteConnectToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.remoteConnectToolStripMenuItem.Text = "Remote Connect";
             this.remoteConnectToolStripMenuItem.Click += new System.EventHandler(this.remoteConnectToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
             // 
             // cToolStripMenuItem
             // 
             this.cToolStripMenuItem.Name = "cToolStripMenuItem";
-            this.cToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.cToolStripMenuItem.Text = "C:";
             this.cToolStripMenuItem.Click += new System.EventHandler(this.cToolStripMenuItem_Click);
             // 
             // eJournalToolStripMenuItem
             // 
             this.eJournalToolStripMenuItem.Name = "eJournalToolStripMenuItem";
-            this.eJournalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eJournalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.eJournalToolStripMenuItem.Text = "E-Journal";
             this.eJournalToolStripMenuItem.Click += new System.EventHandler(this.eJournalToolStripMenuItem_Click);
             // 
             // P1Cmos
             // 
             this.P1Cmos.Name = "P1Cmos";
-            this.P1Cmos.Size = new System.Drawing.Size(180, 22);
+            this.P1Cmos.Size = new System.Drawing.Size(163, 22);
             this.P1Cmos.Text = "CMOS";
             this.P1Cmos.Click += new System.EventHandler(this.P1Cmos_Click);
+            // 
+            // traceToolStripMenuItem
+            // 
+            this.traceToolStripMenuItem.Name = "traceToolStripMenuItem";
+            this.traceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.traceToolStripMenuItem.Text = "Trace";
+            this.traceToolStripMenuItem.Click += new System.EventHandler(this.traceToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(160, 6);
             // 
             // namosNTKillToolStripMenuItem
             // 
             this.namosNTKillToolStripMenuItem.Name = "namosNTKillToolStripMenuItem";
-            this.namosNTKillToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.namosNTKillToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.namosNTKillToolStripMenuItem.Text = "NamosNT kill";
             this.namosNTKillToolStripMenuItem.Click += new System.EventHandler(this.namosNTKillToolStripMenuItem_Click);
             // 
             // isPOSHangToolStripMenuItem
             // 
             this.isPOSHangToolStripMenuItem.Name = "isPOSHangToolStripMenuItem";
-            this.isPOSHangToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.isPOSHangToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.isPOSHangToolStripMenuItem.Text = "Is POS Hang?";
             this.isPOSHangToolStripMenuItem.Click += new System.EventHandler(this.isPOSHangToolStripMenuItem_Click);
             // 
@@ -1754,6 +1763,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage1.Controls.Add(this.lblPumpControl);
+            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.lblNetTemplate);
             this.tabPage1.Controls.Add(this.label49);
             this.tabPage1.Controls.Add(this.pbx_DOMS58);
@@ -1812,7 +1823,7 @@
             this.lblNetTemplate.AutoSize = true;
             this.lblNetTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNetTemplate.ForeColor = System.Drawing.Color.White;
-            this.lblNetTemplate.Location = new System.Drawing.Point(105, 526);
+            this.lblNetTemplate.Location = new System.Drawing.Point(112, 526);
             this.lblNetTemplate.Name = "lblNetTemplate";
             this.lblNetTemplate.Size = new System.Drawing.Size(40, 17);
             this.lblNetTemplate.TabIndex = 138;
@@ -1823,7 +1834,7 @@
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label49.ForeColor = System.Drawing.Color.White;
-            this.label49.Location = new System.Drawing.Point(18, 526);
+            this.label49.Location = new System.Drawing.Point(15, 526);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(71, 17);
             this.label49.TabIndex = 137;
@@ -2131,7 +2142,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(18, 510);
+            this.label21.Location = new System.Drawing.Point(16, 510);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(79, 17);
             this.label21.TabIndex = 58;
@@ -2153,7 +2164,7 @@
             this.lblNetIP.AutoSize = true;
             this.lblNetIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNetIP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lblNetIP.Location = new System.Drawing.Point(105, 509);
+            this.lblNetIP.Location = new System.Drawing.Point(112, 509);
             this.lblNetIP.Name = "lblNetIP";
             this.lblNetIP.Size = new System.Drawing.Size(44, 17);
             this.lblNetIP.TabIndex = 59;
@@ -2299,7 +2310,7 @@
             this.lblPAPTID.AutoSize = true;
             this.lblPAPTID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPAPTID.ForeColor = System.Drawing.Color.White;
-            this.lblPAPTID.Location = new System.Drawing.Point(105, 492);
+            this.lblPAPTID.Location = new System.Drawing.Point(112, 492);
             this.lblPAPTID.Name = "lblPAPTID";
             this.lblPAPTID.Size = new System.Drawing.Size(40, 17);
             this.lblPAPTID.TabIndex = 95;
@@ -2321,7 +2332,7 @@
             this.lblStarBOS.AutoSize = true;
             this.lblStarBOS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStarBOS.ForeColor = System.Drawing.Color.White;
-            this.lblStarBOS.Location = new System.Drawing.Point(105, 474);
+            this.lblStarBOS.Location = new System.Drawing.Point(112, 474);
             this.lblStarBOS.Name = "lblStarBOS";
             this.lblStarBOS.Size = new System.Drawing.Size(40, 17);
             this.lblStarBOS.TabIndex = 94;
@@ -2341,7 +2352,7 @@
             this.lblPSTN.AutoSize = true;
             this.lblPSTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPSTN.ForeColor = System.Drawing.Color.White;
-            this.lblPSTN.Location = new System.Drawing.Point(105, 457);
+            this.lblPSTN.Location = new System.Drawing.Point(112, 457);
             this.lblPSTN.Name = "lblPSTN";
             this.lblPSTN.Size = new System.Drawing.Size(40, 17);
             this.lblPSTN.TabIndex = 93;
@@ -2363,7 +2374,7 @@
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.White;
-            this.label37.Location = new System.Drawing.Point(18, 493);
+            this.label37.Location = new System.Drawing.Point(16, 493);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(80, 17);
             this.label37.TabIndex = 91;
@@ -2383,7 +2394,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.ForeColor = System.Drawing.Color.White;
-            this.label38.Location = new System.Drawing.Point(18, 475);
+            this.label38.Location = new System.Drawing.Point(16, 475);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(67, 17);
             this.label38.TabIndex = 90;
@@ -2405,7 +2416,7 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.ForeColor = System.Drawing.Color.White;
-            this.label39.Location = new System.Drawing.Point(18, 458);
+            this.label39.Location = new System.Drawing.Point(16, 458);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(81, 17);
             this.label39.TabIndex = 89;
@@ -2425,7 +2436,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(63, 428);
+            this.label8.Location = new System.Drawing.Point(63, 408);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 24);
             this.label8.TabIndex = 78;
@@ -2938,12 +2949,27 @@
             this.btn_tt1.UseVisualStyleBackColor = false;
             this.btn_tt1.Click += new System.EventHandler(this.btn_tt1_Click);
             // 
-            // traceToolStripMenuItem
+            // lblPumpControl
             // 
-            this.traceToolStripMenuItem.Name = "traceToolStripMenuItem";
-            this.traceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.traceToolStripMenuItem.Text = "Trace";
-            this.traceToolStripMenuItem.Click += new System.EventHandler(this.traceToolStripMenuItem_Click);
+            this.lblPumpControl.AutoSize = true;
+            this.lblPumpControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPumpControl.ForeColor = System.Drawing.Color.White;
+            this.lblPumpControl.Location = new System.Drawing.Point(112, 440);
+            this.lblPumpControl.Name = "lblPumpControl";
+            this.lblPumpControl.Size = new System.Drawing.Size(40, 17);
+            this.lblPumpControl.TabIndex = 140;
+            this.lblPumpControl.Text = "____";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(16, 441);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 17);
+            this.label2.TabIndex = 139;
+            this.label2.Text = "Pump Control:";
             // 
             // Main
             // 
@@ -3330,6 +3356,8 @@
         private System.Windows.Forms.Button btn_tt1;
         private System.Windows.Forms.ToolStripMenuItem isBOSHungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem traceToolStripMenuItem;
+        private System.Windows.Forms.Label lblPumpControl;
+        private System.Windows.Forms.Label label2;
     }
 }
 

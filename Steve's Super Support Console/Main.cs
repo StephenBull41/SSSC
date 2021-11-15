@@ -409,7 +409,6 @@ namespace Steve_s_Super_Support_Console
 
         void update_indicators(List<Site_Device> devices)
         {
-            bool check_SAH = false;
             bool warnSAH = false;
 
             foreach(Site_Device d in devices)
@@ -423,26 +422,11 @@ namespace Steve_s_Super_Support_Console
                     {
                         warnSAH = true; //run this at the end of the method to allow all indicators to update before we freeze the UI
                     }
-                    if (d.ip.Remove(0, d.ip.Length - 3) == getConfigValue("pos1ip"))
-                    {
-                        //if we get here we know pos 1 is online, checkSAH is to check if SAH should be up if it's not
-                        check_SAH = true; 
-                    }
                 }
                 else
                 {
                     d.indicator.BackColor = Color.FromArgb(255, 0, 0);
                 }
-            }
-
-            if (check_SAH && !warnSAH)
-            {
-                //for prod validation
-                if (testmode)
-                {
-                    lblMismatch.Text = "checkSAH && !warnSAH reached";
-                }
-                lblMismatch.Text = checkSAH();
             }
             if (warnSAH)
             {
@@ -450,7 +434,7 @@ namespace Steve_s_Super_Support_Console
             }
         }
 
-        public void/*List<Site_Device>*/ PollSite(List<Site_Device> devices)
+        public void PollSite(List<Site_Device> devices)
         {
             List<Thread> threads = new List<Thread>();
             foreach (Site_Device d in devices)
@@ -472,7 +456,8 @@ namespace Steve_s_Super_Support_Console
             }
             this.Invoke(new MethodInvoker(delegate { SetAllFail(); }));
             this.Invoke(new MethodInvoker(delegate { update_indicators(devices); }));
-            //return devices;
+            this.Invoke(new MethodInvoker(delegate { lblPumpControl.Text = getControllerType(); }));
+            //add invoke here for get controller
         }
 
         public void btnPing_Click(object sender, EventArgs e)
@@ -870,29 +855,55 @@ namespace Steve_s_Super_Support_Console
             LoadActive = false;
         }
 
-        public string checkSAH()
+        public string getControllerType()
         {
-            //This method checks if a SAH server is expected when it can't be polled
-
+            //read a pump configuration file from the POS to determine the pump controller type, this will be displayed to the user under inventory
             string confPath = getConfigValue("tss");//path to the file we want to check
-            string termSAH = getConfigValue("termSAH");//what we expect to find if site is SAH
+            string controllerList = getConfigValue("controller_list");//a comma seperated list of controllers
 
-            //this should run before we finish polling the site so we don't know if the target is online
-            try
+            if(controllerList != null)
             {
-                string[] conf = File.ReadAllLines($@"\\{MWSIP}\{confPath}");
-                foreach(string line in conf)
-                {
-                    if (line.Contains(termSAH))
+                if (File.Exists($@"\\{MWSIP}\{confPath}")) {
+
+                    string[] tssConf = File.ReadAllLines($@"\\{MWSIP}\{confPath}");
+
+                    if (controllerList.Contains(','))
                     {
-                        return "SAH controller expected";
+                        foreach (string controller in controllerList.Split(','))
+                        {
+                            string conTerm = getConfigValue(controller);//the unique search term for a given controller that would be found in the pump config
+                            foreach(string line in tssConf)
+                            {
+                                try
+                                {
+                                    if (line.Contains(conTerm))
+                                    {
+                                        return controller;
+                                    }
+                                }
+                                catch
+                                {
+                                    return "SSSC config error";//incase a comma is left at the end or start of the string causing a null value when split
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return null;//if there's only one controller in the field then we don't need to inform the user as it's already implied
                     }
                 }
-
-                return null;
+                else
+                {
+                    return "TSS config inaccessible";
+                }
             }
-            catch { return "Unable to access tss config"; };
-            
+            else
+            {
+                return "no sssc controller config";
+            }
+
+            return null;
         }
 
         private void btnStreamLoader_Click(object sender, EventArgs e)
@@ -1076,6 +1087,7 @@ namespace Steve_s_Super_Support_Console
             lblPAPTID.Text = "";
             lblNetTemplate.Text = "";
             lblPSTN.Text = "";
+            lblPumpControl.Text = "";
             lblSiteID2.ForeColor = Color.White;
             lblConType.ForeColor = Color.White;
             lblConType.Font = new Font(lblConType.Font, FontStyle.Regular);
