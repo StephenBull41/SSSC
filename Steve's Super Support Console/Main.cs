@@ -448,7 +448,7 @@ namespace Steve_s_Super_Support_Console
                 });
                 threads.Add(t);
                 t.Start();
-                Thread.Sleep(5); //try not to DDOS our shit connection
+                Thread.Sleep(2); //try not to DDOS our shit connection
             }
             foreach (Thread t in threads)
             {
@@ -456,7 +456,15 @@ namespace Steve_s_Super_Support_Console
             }
             this.Invoke(new MethodInvoker(delegate { SetAllFail(); }));
             this.Invoke(new MethodInvoker(delegate { update_indicators(devices); }));
-            this.Invoke(new MethodInvoker(delegate { lblPumpControl.Text = getControllerType(); }));
+            this.Invoke(new MethodInvoker(delegate {
+
+                //this will freeze the UI on sites with no pump config or MWS1 for too long as it's not threaded
+                //first check MWS1 is online
+                if((from item in devices where item.ip.Remove(item.ip.Length -3) == getConfigValue("pos1ip") select item.online).Single() == true)
+
+                lblPumpControl.Text = getControllerType();
+
+            }));
             //add invoke here for get controller
         }
 
