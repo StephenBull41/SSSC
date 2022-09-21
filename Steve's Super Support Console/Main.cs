@@ -465,6 +465,23 @@ namespace Steve_s_Super_Support_Console
             }
             this.Invoke(new MethodInvoker(delegate { SetAllFail(); }));
             this.Invoke(new MethodInvoker(delegate { update_indicators(devices); }));
+            /* Removing this for now, to be fixed later
+             * 
+             * Description: The process was terminated due to an unhandled exception.
+                Exception Info: System.InvalidOperationException
+                   at System.Windows.Forms.Control.MarshaledInvoke(System.Windows.Forms.Control, System.Delegate, System.Object[], Boolean)
+                   at System.Windows.Forms.Control.Invoke(System.Delegate, System.Object[])
+                   at System.Windows.Forms.Control.Invoke(System.Delegate)
+                   at Steve_s_Super_Support_Console.Main.PollSite(System.Collections.Generic.List`1<Steve_s_Super_Support_Console.Site_Device>)
+                   at Steve_s_Super_Support_Console.Main+<>c__DisplayClass13_0.<pingDevices>b__0()
+                   at System.Threading.ThreadHelper.ThreadStart_Context(System.Object)
+                   at System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object, Boolean)
+                   at System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object, Boolean)
+                   at System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object)
+                   at System.Threading.ThreadHelper.ThreadStart()
+
+             * 
+             * 
             this.Invoke(new MethodInvoker(delegate {
 
                 //this will freeze the UI on sites with no pump config or MWS1 for too long as it's not threaded
@@ -476,6 +493,7 @@ namespace Steve_s_Super_Support_Console
 
             }));
             //add invoke here for get controller
+            */
         }
 
         public void btnPing_Click(object sender, EventArgs e)
