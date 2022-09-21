@@ -508,7 +508,7 @@ namespace Steve_s_Super_Support_Console
             //Check if we're loading an OPT site
             //use the switch image to dislay this
             bool isopt = false;
-            if (ID.Remove(1) == "8")
+            if (ID.Remove(1) == "8" || SiteType == "TT OPT")
             {
                 SWITCHIP = NetIP + getConfigValue("psmip");
                 ibxSwitch.Image = Image.FromFile(getConfigValue("img_psm"));
@@ -822,14 +822,9 @@ namespace Steve_s_Super_Support_Console
             LoadActive = true;
             TimeLeft = 180;
             //for testing shit and disabling auto pings
-            if (tbxSiteID.Text == "99123")
+            if (tbxSiteID.Text == "00000")
             {
-                testmode = true;
-                loadInventory();
-            }
-            if (tbxSiteID.Text == "99321")
-            {
-                testmode = false;
+                testmode = !testmode;
                 loadInventory();
             }
             // check if a valid site number
@@ -850,6 +845,17 @@ namespace Steve_s_Super_Support_Console
             {
                 pingDevices();
             }
+
+            //if OPT & option enabled auto launch a ping -t, due to L1 assuming site offline & not confirming + unstable OPT nets 
+            if ((SiteID.Remove(1) == "8" || SiteType == "TT OPT") && getConfigValue("OPT_Auto_Ping") == "True")
+            {
+
+                CPingIP = NetIP + getConfigValue("psmip");
+                Thread CPingT = new Thread(CPingThread);
+                CPingT.Start();
+
+            }
+
             exit:; // important exit remains above alerts & LoadActive
             loadAlerts();
             LoadActive = false;
@@ -861,7 +867,7 @@ namespace Steve_s_Super_Support_Console
             string confPath = getConfigValue("tss");//path to the file we want to check
             string controllerList = getConfigValue("controller_list");//a comma seperated list of controllers
 
-            if(controllerList != null)
+            if(controllerList != null && SiteType != "TT OPT")
             {
                 if (File.Exists($@"\\{MWSIP}\{confPath}")) {
 
