@@ -65,6 +65,15 @@ namespace Steve_s_Super_Support_Console
                 }
             }
 
+            string[] OPTPeeps = File.ReadAllLines(getConfigValue("OPTNoPingList"));
+            foreach(string Dude in OPTPeeps) //check if user is whitelisted to disable auto OPT polling
+            {
+                if (Username.ToUpper() == Dude.ToUpper())
+                {
+                    userNoOPTPing = true;
+                }
+            }
+
             string live = File.ReadAllText(getConfigValue("version"));
 
             if (version != live)
@@ -3432,6 +3441,7 @@ namespace Steve_s_Super_Support_Console
         public int sortOffset = 64;
         public volatile bool monStop = false;
         public string currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+        public bool userNoOPTPing = false;
         public int resultPos = 0;
         public int editState = 1;
         public string viewerText = "";
