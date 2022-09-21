@@ -470,8 +470,9 @@ namespace Steve_s_Super_Support_Console
                 //this will freeze the UI on sites with no pump config or MWS1 for too long as it's not threaded
                 //first check MWS1 is online
                 if((from item in devices where item.ip.Remove(item.ip.Length -3) == getConfigValue("pos1ip") select item.online).Single() == true)
-
-                lblPumpControl.Text = getControllerType();
+                {
+                    lblPumpControl.Text = getControllerType();
+                }                
 
             }));
             //add invoke here for get controller
@@ -864,7 +865,7 @@ namespace Steve_s_Super_Support_Console
             }
 
             //if OPT & option enabled auto launch a ping -t, due to L1 assuming site offline & not confirming + unstable OPT nets 
-            if ((SiteID.Remove(1) == "8" || SiteType == "TT OPT") && getConfigValue("OPT_Auto_Ping") == "True")
+            if ((SiteID.Remove(1) == "8" || SiteType == "TT OPT") && getConfigValue("OPT_Auto_Ping") == "True" && !userNoOPTPing)
             {
 
                 CPingIP = NetIP + getConfigValue("psmip");
