@@ -867,7 +867,7 @@ namespace Steve_s_Super_Support_Console
             string confPath = getConfigValue("tss");//path to the file we want to check
             string controllerList = getConfigValue("controller_list");//a comma seperated list of controllers
 
-            if(controllerList != null && SiteType != "TT OPT")
+            if(controllerList != null && SiteType != "TT OPT" && SiteID.Remove(1) != "8")
             {
                 if (File.Exists($@"\\{MWSIP}\{confPath}")) {
 
