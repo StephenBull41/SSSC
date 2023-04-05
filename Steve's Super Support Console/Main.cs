@@ -3220,7 +3220,7 @@ namespace Steve_s_Super_Support_Console
                 int t_dont_use_the_acronym = dont_use_the_acronym + Convert.ToInt32(last_line[9]);
 
                 statsfile[statsfile.Length - 1] = DateTime.Today.Year + "," + DateTime.Today.Month + "," + DateTime.Today.Day +
-                    "," + loaded + "," + sites_nuked + "," + pre_auths_explained + "," + corners_cut + "," + EMG_resets_pushed + "," + no_context + "," + dont_use_the_acronym + "," + DateTime.Today.DayOfWeek;
+                    "," + t_loaded + "," + t_sites_nuked + "," + t_pre_auths_explained + "," + t_corners_cut + "," + t_EMG_resets_pushed + "," + t_no_context + "," + t_dont_use_the_acronym + "," + DateTime.Today.DayOfWeek;
 
                 File.WriteAllLines(getConfigValue("stats_file"), statsfile);
             }
