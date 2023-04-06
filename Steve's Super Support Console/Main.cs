@@ -1219,7 +1219,7 @@ namespace Steve_s_Super_Support_Console
             if (timeout == null) { timeout = "120"; };
             string PingIt = CPingIP;
             string Device = Devcie;
-            int i = 0;
+            //int i = 0;
             //lblCPing.Invoke(new MethodInvoker(delegate { lblCPing.Text = "Launching"; }));
             //Random string to stop file name conflicts
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -1230,9 +1230,13 @@ namespace Steve_s_Super_Support_Console
                 stringChars[a] = chars[random.Next(chars.Length)];
             }
             var RandS = new String(stringChars);
-        Start:
-
-
+            string line0 = $"title {SiteID} - {SiteName} - {Device}";
+            string line1 = $"ping {PingIt} -n {number} && timeout -t {timeout}";
+            string line2 = "";
+            string[] lines = { line0, line1, line2 };
+            string path = getConfigValue("script_path_ps1");
+            TBatMan(path + "Launch\\cping" + GetRand8() + ".bat", lines, 500000);
+            /*
             if ((File.Exists($@"{getConfigValue("resources_folder")}cping{RandS}.bat") && i <= 6))
             {
                 i++;
@@ -1254,10 +1258,12 @@ namespace Steve_s_Super_Support_Console
                 Thread.Sleep(1000);
                 File.Delete($@"{getConfigValue("resources_folder")}cping{RandS}.bat");
             }
+
             else
             {
                 //lblCPing.Invoke(new MethodInvoker(delegate { lblCPing.Text = "CMD load failed, try again"; })); ;
             }
+            */
         }
 
         //Picturebox on click
@@ -3604,6 +3610,7 @@ namespace Steve_s_Super_Support_Console
 
         private void CheckUser(string deviceIP)
         {
+            /*
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var stringChars = new char[8];
             var random = new Random();
@@ -3623,6 +3630,11 @@ namespace Steve_s_Super_Support_Console
             Thread.Sleep(100);
             System.Diagnostics.Process.Start($@"{getConfigValue("resources_folder")}UCheck_{RandS}.bat");
             exit:;
+            */
+
+            string path = getConfigValue("script_path_ps1");
+            string[] scriptText = { @"cd\", "@Echo off", $@"PsLoggedon.exe \\{deviceIP}", "pause" };
+            TBatMan(path + "Launch\\UCheck" + GetRand8() + ".bat", scriptText, 180000);
         }
 
         public bool CompareNoCase(string checkValue, string IsIn) // check if first value is in second ignoring case
@@ -3713,7 +3725,7 @@ namespace Steve_s_Super_Support_Console
                 File.AppendAllText(getConfigValue("ntkill"), $"{currentUser} ran Namos kill on site {SiteID} POS 1 at {DateTime.Now}" + Environment.NewLine);
                 string[] allLines = { $"@RCMD \\\\{MWSIP} namosctl stop namosnt", $"@RCMD \\\\{MWSIP} namosctl start namosnt"};//string[] allLines = { $"@RCMD \\\\{MWSIP} taskkill /f /IM \"NamosNT.exe\"", "pause" };
                 string RandS = GetRand8();
-                TBatMan($@"{getConfigValue("resources_folder")}NamosStopStart_{RandS}.bat", allLines, 20000);
+                TBatMan($@"{getConfigValue("resources_folder")}NamosStopStart_{RandS}.bat", allLines, 180000);
             }
         }
 
@@ -3726,7 +3738,7 @@ namespace Steve_s_Super_Support_Console
                 $"@RCMD \\\\{MWSIP} uptime",
                 $"pause"};
             string RandS = GetRand8();
-            TBatMan($@"{getConfigValue("resources_folder")}POSHang_{RandS}.bat", allLines, 20000);
+            TBatMan($@"{getConfigValue("resources_folder")}POSHang_{RandS}.bat", allLines, 180000);
         }
 
         private void Logger(string path, string[] lines)
