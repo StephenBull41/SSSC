@@ -3446,7 +3446,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.2.1.1";
+        public string version = "4.2.1.2";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
