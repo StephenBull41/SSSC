@@ -114,6 +114,9 @@ namespace Steve_s_Super_Support_Console
 
             initTT();
             init_conlist();
+
+
+
         }
 
         //              Init & misc events
@@ -727,6 +730,12 @@ namespace Steve_s_Super_Support_Console
                     lblConType.Text = SiteConType + " (Confirm in RBOS)";
                     lblSiteDeCom.Text = SiteDeCommed;
                     lblSiteLastMod.Text = SiteLastModTD;
+
+                    //outage workaround to allow for using FQDN names to access devices instead of IP
+                    if (getConfigValue("BosForceHostname").ToUpper() == "TRUE" && getConfigValue("BosHostnameSuffix") != null)
+                    {
+                        BOCIP = SiteID + getConfigValue("BosHostnameSuffix");
+                    }
 
                     if (cbxAutoCopy.Checked)
                     {
@@ -3446,7 +3455,7 @@ namespace Steve_s_Super_Support_Console
         /*Misc*/
 
         //------------------------
-        public string version = "4.2.1.2";
+        public string version = "4.2.1.3";
         public string[] siteIPData;
         public string[] siteInventoryData;
         public string[] config;
